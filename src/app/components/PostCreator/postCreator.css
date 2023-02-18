@@ -1,0 +1,15 @@
+.new-post {
+  max-width: 2rem;
+  max-height: 2rem;
+  
+  margin: 0 auto;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-post > input, .new-post > button{
+  padding: 0.5rem;
+  font-size: large;
+}
