@@ -20,7 +20,7 @@ const PostCreator = () => {
   return (
     <div className="new-post">
       <input
-        defaultValue={postValue}
+        value={postValue}
         onChange={(e) => setPostValue(e.target.value)}
         maxLength={15}
         type="text"
