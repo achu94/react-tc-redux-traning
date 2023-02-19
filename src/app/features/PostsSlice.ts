@@ -23,7 +23,7 @@ export const postsSlice = createSlice({
   initialState,
   reducers: {
     addPost: (state, action: PayloadAction<PostsStateObj>) => {
-      state.posts.push(action.payload);
+      state.posts = [...state.posts, action.payload];
       setData(action.payload, "posts");
     },
     setInitialData: (state, action: PayloadAction<PostsStateObj[]>) => {
@@ -33,8 +33,8 @@ export const postsSlice = createSlice({
     },
     removePost: (state, action: PayloadAction<number>) => {
       removeData("posts", action.payload);
-      
-      const newPosts = state.posts.filter(post => post.id !== action.payload);
+
+      const newPosts = state.posts.filter((post) => post.id !== action.payload);
       state.posts = newPosts;
     },
   },
