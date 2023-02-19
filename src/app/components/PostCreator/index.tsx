@@ -16,7 +16,7 @@ const PostCreator = () => {
   
   const handleOnchangePostInput = (e: ChangeEvent<HTMLInputElement>) => {
     setPostValue(e.target.value);
-    setPostButtonDisabled(false);
+    setPostButtonDisabled(e.target.value ? false : true);
   } 
   
   const handleOnPost = () => {
