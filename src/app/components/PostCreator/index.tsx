@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { addPost } from "../../features/PostsSlice";
 import { useDispatch } from "react-redux";
 
@@ -10,18 +10,28 @@ const getRandomNumber = (): number => {
 
 const PostCreator = () => {
   const [postValue, setPostValue] = useState<string>("");
+  const [postButtonDisabled, setPostButtonDisabled] = useState<boolean>(true);
+  
   const dispatch = useDispatch();
   
+  const handleOnchangePostInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setPostValue(e.target.value);
+    setPostButtonDisabled(false);
+  } 
+  
   const handleOnPost = () => {
+    if(!postValue) return;
+  
     dispatch(addPost({ val: postValue, id: getRandomNumber() }));
     setPostValue("");
+    setPostButtonDisabled(true);
   }
   
   return (
     <div className="new-post">
       <input
         value={postValue}
-        onChange={(e) => setPostValue(e.target.value)}
+        onChange={handleOnchangePostInput}
         maxLength={15}
         type="text"
         name="new-post"
@@ -29,6 +39,7 @@ const PostCreator = () => {
       <button
         className="post-submit"
         onClick={handleOnPost}
+        disabled={postButtonDisabled}
       >
         Post
       </button>
