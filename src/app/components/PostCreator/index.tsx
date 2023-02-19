@@ -32,6 +32,7 @@ const PostCreator = () => {
       <input
         value={postValue}
         onChange={handleOnchangePostInput}
+        onKeyUp={ (e) => e.code === 'Enter' ? handleOnPost() : ""}
         maxLength={15}
         type="text"
         name="new-post"
