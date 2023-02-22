@@ -1,17 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { setData, removeData } from "../utils/localStorage";
+import { getUserId } from "../utils/user";
 
 export type PostsState = {
   posts: {
     id: number;
     val: string;
+    userId: string;
   }[];
 };
 
 type PostsStateObj = {
   id: number;
   val: string;
+  userId: string;
 };
 
 const initialState: PostsState = {
@@ -22,7 +25,7 @@ export const postsSlice = createSlice({
   name: "posts",
   initialState,
   reducers: {
-    addPost: (state, action: PayloadAction<PostsStateObj>) => {
+    addPostX: (state, action: PayloadAction<PostsStateObj>) => {
       state.posts = [...state.posts, action.payload];
       setData(action.payload, "posts");
     },
@@ -40,6 +43,14 @@ export const postsSlice = createSlice({
   },
 });
 
-export const { addPost, setInitialData, removePost } = postsSlice.actions;
+export const addPost = (newPost: PostsStateObj) => async (dispatch: Function) => {
+  const userId = await getUserId();
+  
+  setTimeout( () => {
+    dispatch(addPostX({...newPost, userId: userId}))
+  }, 1000)
+};
+
+export const { addPostX, setInitialData, removePost } = postsSlice.actions;
 
 export default postsSlice.reducer;

@@ -1,6 +1,7 @@
 type postObjType = {
   id: number;
   val: string;
+  userId: string;
 };
 
 const LS = localStorage;
@@ -33,4 +34,15 @@ async function removeData(key:string, id: number): Promise<void> {
   LS.setItem(key, datJson);
 }
 
-export { setData, getData, removeData };
+function getUser(): string {
+  const userId = LS.getItem('user');
+  
+  if(userId) return userId;
+  return "";
+}
+
+async function setUser(id: string): Promise<void> {
+  LS.setItem("user", id);
+}
+
+export { setData, getData, removeData, getUser, setUser };

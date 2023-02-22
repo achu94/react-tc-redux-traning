@@ -3,14 +3,21 @@ import React from "react";
 type propsType = {
   id: number;
   val: string;
+  userImg: string | undefined;
+  userName: string | undefined;
+  postOwner: boolean;
   removeHandler: (id: number) => void;
 };
 
 const Post = (props: propsType) => {
   return (
-    <div>
+    <div className="post-element">
+      <div>
+        <img src={props.userImg} alt={props.userName} />
+      </div>
       <h3>{props.val}</h3>
-      <button onClick={() => props.removeHandler(props.id)} >Remove</button>
+      { props.postOwner ? <button onClick={() => props.removeHandler(props.id)} >Remove</button> : ''}
+      
     </div>
   );
 };

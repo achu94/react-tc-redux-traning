@@ -6,3 +6,15 @@
   margin-top: 3rem;
   gap: 1rem;
 }
+
+.post-element {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap: 8px;
+}
+
+.post-element img {
+  max-height: 45px;
+  border-radius: 50%;
+}
