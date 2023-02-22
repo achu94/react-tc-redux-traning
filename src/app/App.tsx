@@ -14,16 +14,16 @@ function App() {
       setUser(userid);
     })();
   }, []);
-  
+
   const handleSetUser = (id: string) => {
     setUserProfil(id);
     setUser(id);
   };
-  
+
   const handleLogOut = () => {
-    setUserProfil("")
+    setUserProfil("");
     setUser("");
-  }
+  };
 
   const [user, setUser] = useState<string | null>();
 
@@ -31,11 +31,13 @@ function App() {
     <div className="App">
       {user ? (
         <>
-          <button onClick={ () => handleLogOut()}>Logout</button>
+          <div style={{textAlign: 'right'}}>
+            <button onClick={() => handleLogOut()}>Logout</button>
+          </div>
           <PostCreator /> <PostList />
         </>
       ) : (
-        <UserList handleSetUser={handleSetUser}/>
+        <UserList handleSetUser={handleSetUser} />
       )}
     </div>
   );
